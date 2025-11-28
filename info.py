@@ -187,11 +187,7 @@ else:
 
 #i addedddddddddddddddddd
 
-if ON_RAILWAY:
-    APP_NAME = os.environ.get('RAILWAY_SERVICE_NAME', 'Advancemovie-1')
-    FQDN = os.environ.get('RAILWAY_PUBLIC_DOMAIN', '')
-    BIND_ADRESS = '0.0.0.0'
-elif ON_RENDER:
+if ON_RENDER:
     APP_NAME = os.environ.get('RENDER_SERVICE_NAME', 'Clean-AutoF-BOT')
     FQDN = os.environ.get('RENDER_EXTERNAL_HOSTNAME', 'https://clean-autof-bot-4lo4.onrender.com')
     BIND_ADRESS = '0.0.0.0'
