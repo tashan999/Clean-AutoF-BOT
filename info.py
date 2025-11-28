@@ -158,51 +158,41 @@ SEASONS = ["season 1" , "season 2" , "season 3" , "season 4", "season 5" , "seas
 
 STREAM_MODE = bool(environ.get('STREAM_MODE', True)) # Set Stream mode True or False
 
-NO_PORT = bool(environ.get('NO_PORT', False))
-APP_NAME = None
-if 'DYNO' in environ:
-    ON_HEROKU = True
-    APP_NAME = environ.get('APP_NAME')
-else:
-    ON_HEROKU = False
-BIND_ADRESS = str(getenv('WEB_SERVER_BIND_ADDRESS', '0.0.0.0'))
-FQDN = str(getenv('FQDN', BIND_ADRESS)) if not ON_HEROKU or getenv('FQDN') else APP_NAME+'.herokuapp.com'
-URL = "https://{}/".format(FQDN) if ON_HEROKU or NO_PORT else "https://{}/".format(FQDN, PORT)
-SLEEP_THRESHOLD = int(environ.get('SLEEP_THRESHOLD', '60'))
-WORKERS = int(environ.get('WORKERS', '4'))
-SESSION_NAME = str(environ.get('SESSION_NAME', 'codeflix'))
-MULTI_CLIENT = False
-name = str(environ.get('name', 'Deendayal'))
-PING_INTERVAL = int(environ.get("PING_INTERVAL", "1200"))  # 20 minutes
-if 'DYNO' in environ:
-    ON_HEROKU = True
-    APP_NAME = str(getenv('APP_NAME'))
-else:
-    ON_HEROKU = False
-HAS_SSL = bool(getenv('HAS_SSL', True))
-if HAS_SSL:
-    URL = "https://{}/".format(FQDN)
-else:
-    URL = "http://{}/".format(FQDN)
+# ---- PLATFORM DETECTION ----
+ON_HEROKU  = "DYNO" in environ
+ON_RENDER  = "RENDER_SERVICE_NAME" in environ or "RENDER_EXTERNAL_HOSTNAME" in environ
+ON_RAILWAY = "RAILWAY_SERVICE_NAME" in environ or "RAILWAY_ENVIRONMENT" in environ
 
-#i addedddddddddddddddddd
+# ---- DEFAULTS ----
+APP_NAME = getenv("APP_NAME")
+BIND_ADDRESS = getenv("WEB_SERVER_BIND_ADDRESS", "0.0.0.0")
+FQDN = getenv("FQDN", BIND_ADDRESS)
 
+# ---- RENDER SETTINGS ----
 if ON_RENDER:
-    APP_NAME = os.environ.get('RENDER_SERVICE_NAME', 'Clean-AutoF-BOT')
-    FQDN = os.environ.get('RENDER_EXTERNAL_HOSTNAME', 'https://clean-autof-bot-4lo4.onrender.com')
-    BIND_ADRESS = '0.0.0.0'
-else:
-    ON_HEROKU = False
-    APP_NAME = None
-    BIND_ADRESS = str(getenv('WEB_SERVER_BIND_ADDRESS', '0.0.0.0'))
-    FQDN = str(getenv('FQDN', BIND_ADRESS))
+    APP_NAME = getenv("RENDER_SERVICE_NAME", APP_NAME)
+    FQDN = getenv("RENDER_EXTERNAL_HOSTNAME", FQDN)
+    BIND_ADDRESS = "0.0.0.0"
 
-# SSL & URL handling
-HAS_SSL = bool(getenv('HAS_SSL', True))
+# ---- RAILWAY SETTINGS ----
+elif ON_RAILWAY:
+    APP_NAME = getenv("RAILWAY_SERVICE_NAME", APP_NAME)
+    FQDN = getenv("RAILWAY_PUBLIC_DOMAIN", FQDN)
+    BIND_ADDRESS = "0.0.0.0"
+
+# ---- HEROKU SETTINGS ----
+elif ON_HEROKU:
+    if APP_NAME:
+        FQDN = f"{APP_NAME}.herokuapp.com"
+
+# ---- SSL & URL ----
+HAS_SSL = getenv("HAS_SSL", "true").lower() in ("true", "1", "yes")
+
 if HAS_SSL:
     URL = f"https://{FQDN}/"
 else:
     URL = f"http://{FQDN}/"
+
 
 # ============================
 # Reactions Configuration
