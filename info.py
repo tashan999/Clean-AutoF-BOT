@@ -28,8 +28,8 @@ BOT_TOKEN = environ.get('BOT_TOKEN', "")
 CACHE_TIME = int(environ.get('CACHE_TIME', 300))
 USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', True))
 
-PICS = (environ.get('PICS', 'https://envs.sh/WdA.jpg https://envs.sh/Wdj.jpg')).split()  # Sample pic
-NOR_IMG = environ.get("NOR_IMG", "https://envs.sh/Wdj.jpg")
+PICS = (environ.get('PICS', 'https://graph.org/file/229e50a228824ec974801-0eca885f4ed4f149b3.jpg')).split()  # Sample pic
+NOR_IMG = environ.get("NOR_IMG", "https://graph.org/file/229e50a228824ec974801-0eca885f4ed4f149b3.jpg")
 MELCOW_VID = environ.get("MELCOW_VID", "https://envs.sh/Wdj.jpg")
 SPELL_IMG = environ.get("SPELL_IMG", "https://envs.sh/Wdj.jpg")
 SUBSCRIPTION = (environ.get('SUBSCRIPTION', 'https://envs.sh/Wdj.jpg'))
@@ -45,9 +45,9 @@ BIN_CHANNEL = int(environ.get('BIN_CHANNEL', '-1002931073520'))  # Bin channel i
 MOVIE_UPDATE_CHANNEL = int(environ.get('MOVIE_UPDATE_CHANNEL', '-1003010902792'))  # Notification of those who verify will be sent to your channel
 PREMIUM_LOGS = int(environ.get('PREMIUM_LOGS', '-1002917195715'))  # Premium logs channel id
 DELETE_CHANNELS = [int(dch) if id_pattern.search(dch) else dch for dch in environ.get('DELETE_CHANNELS', '').split()]
-support_chat_id = environ.get('SUPPORT_CHAT_ID', '')  # Support group id (make sure bot is admin)
+support_chat_id = environ.get('SUPPORT_CHAT_ID', '-4993027479')  # Support group id (make sure bot is admin)
 reqst_channel = environ.get('REQST_CHANNEL_ID', '')  # Request channel id (make sure bot is admin)
-MULTI_FSUB = [int(channel_id) for channel_id in environ.get('MULTI_FSUB', '-1002913029697').split() if re.match(r'^-?\d+$', channel_id)]  # Channel for force sub (make sure bot is admin)
+MULTI_FSUB = [int(channel_id) for channel_id in environ.get('MULTI_FSUB', '-1002997132826 -1001674674258').split() if re.match(r'^-?\d+$', channel_id)]  # Channel for force sub (make sure bot is admin)
 
 auth_channel = environ.get('AUTH_CHANNEL', '-1002997132826')  # Channel/Group ID for force sub (make sure bot is admin)
 AUTH_CHANNEL = [int(fch) if id_pattern.search(fch) else fch for fch in environ.get('AUTH_CHANNEL', '-1001674674258').split()]
@@ -92,7 +92,7 @@ HOW_TO_VERIFY = environ.get('HOW_TO_VERIFY', 'https://t.me/How_to_Download_7x/30
 IS_SHORTLINK = bool(environ.get('IS_SHORTLINK', True))
 SHORTLINK_URL = environ.get('SHORTLINK_URL', 'arolinks.com')
 SHORTLINK_API = environ.get('SHORTLINK_API', '68156c1e0de7a57f3aef0e2dcbdc3168ed6b9040')
-TUTORIAL = environ.get('TUTORIAL', 'https://t.me/How_to_Download_7x/30')  # Tutorial video link for opening shortlink website
+TUTORIAL = environ.get('TUTORIAL', 'https://t.me/htolnextflix/5')  # Tutorial video link for opening shortlink website
 IS_TUTORIAL = bool(environ.get('IS_TUTORIAL', True))
 
 # ============================
@@ -100,9 +100,9 @@ IS_TUTORIAL = bool(environ.get('IS_TUTORIAL', True))
 # ============================
 GRP_LNK = environ.get('GRP_LNK', 'https://t.me/movie7xchat')
 CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/nova_flix')
-OWNER_LNK = environ.get('OWNER_LNK', 'https://t.me/cosmic_freak')
-MOVIE_UPDATE_CHANNEL_LNK = environ.get('MOVIE_UPDATE_CHANNEL_LNK', 'https://t.me/nova_flix')
-OWNERID = int(os.environ.get('OWNERID', '6497757690'))  # Replace with the actual admin ID
+OWNER_LNK = environ.get('OWNER_LNK', 'https://t.me/tazenx_bot')
+MOVIE_UPDATE_CHANNEL_LNK = environ.get('MOVIE_UPDATE_CHANNEL_LNK', 'https://t.me/+uWZfk-0Sg3UwYTdl')
+OWNERID = int(os.environ.get('OWNERID', '1564143988'))  # Replace with the actual admin ID
 
 # ============================
 # User Configuration
@@ -184,6 +184,29 @@ if HAS_SSL:
     URL = "https://{}/".format(FQDN)
 else:
     URL = "http://{}/".format(FQDN)
+
+#i addedddddddddddddddddd
+
+if ON_RAILWAY:
+    APP_NAME = os.environ.get('RAILWAY_SERVICE_NAME', 'Advancemovie-1')
+    FQDN = os.environ.get('RAILWAY_PUBLIC_DOMAIN', '')
+    BIND_ADRESS = '0.0.0.0'
+elif ON_RENDER:
+    APP_NAME = os.environ.get('RENDER_SERVICE_NAME', 'Clean-AutoF-BOT')
+    FQDN = os.environ.get('RENDER_EXTERNAL_HOSTNAME', 'https://clean-autof-bot-4lo4.onrender.com')
+    BIND_ADRESS = '0.0.0.0'
+else:
+    ON_HEROKU = False
+    APP_NAME = None
+    BIND_ADRESS = str(getenv('WEB_SERVER_BIND_ADDRESS', '0.0.0.0'))
+    FQDN = str(getenv('FQDN', BIND_ADRESS))
+
+# SSL & URL handling
+HAS_SSL = bool(getenv('HAS_SSL', True))
+if HAS_SSL:
+    URL = f"https://{FQDN}/"
+else:
+    URL = f"http://{FQDN}/"
 
 # ============================
 # Reactions Configuration
