@@ -7,7 +7,7 @@ class script(object):
 
 मैं एक फ़िल्म खोजने वाला बॉट हूँ। 🎬
 आसानी से किसी भी फ़िल्म को खोजें।
-सिर्फ़ फ़िल्म का नाम लिखें और तुरंत फ़िल्म पाएं।</blockquote>""" ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : <a href="https://t.me/+rMOVuYQNpBE3NmM1">ᴛᴀᴢᴇɴ x</a></blockquote></b>"""
+सिर्फ़ फ़िल्म का नाम लिखें और तुरंत फ़िल्म पाएं।</blockquote>""" ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : <a href="https://t.me/tazenx_bot">ᴛᴀᴢᴇɴ x</a></blockquote></b>"""
 
     GSTART_TXT = """<b>ʜᴇʏ {}, {}\n\nɪ ᴀᴍ ᴛʜᴇ ᴍᴏꜱᴛ ᴘᴏᴡᴇʀꜰᴜʟ ᴀᴜᴛᴏ ꜰɪʟᴛᴇʀ ʙᴏᴛ ᴡɪᴛʜ ᴘʀᴇᴍɪᴜᴍ ꜰᴇᴀᴛᴜʀᴇꜱ, ᴊᴜsᴛ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴀɴᴅ ᴇɴᴊᴏʏ!\n\n<blockquote>‣ ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : <a href="https://t.me/codeflix_bots">ᴛᴀᴢᴇɴ x</a></blockquote></b>"""
     
